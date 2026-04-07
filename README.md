@@ -1,128 +1,47 @@
-# 🚀 Job Tracker API
+# Job Tracker API
 
-A production-ready **Job Application Tracker API** built using FastAPI. This project helps users manage and track their job applications efficiently with secure authentication and RESTful APIs.
+## Environment Variables
+- `PORT`: Port on which the application runs (default: 3000)
+- `DB_URI`: MongoDB connection string.
+- `JWT_SECRET`: Secret for signing JWT tokens.
 
----
+## Complete API Endpoints
+- **GET /jobs**: Retrieve a list of jobs.
+- **POST /jobs**: Create a new job.
+  - Required fields: title, description, company.
+- **GET /jobs/:id**: Retrieve a job by ID.
+- **PUT /jobs/:id**: Update a job by ID.
+- **DELETE /jobs/:id**: Delete a job by ID.
 
-## 📌 Features
+## Database Setup
+To set up the database, ensure MongoDB is running. Run the following command to seed the database:
 
-* 🔐 User Authentication (JWT-based login & register)
-* 📄 Add & manage job applications
-* 📊 Track application status (Applied, Interview, Rejected, Offer)
-* 🔍 Search and filter jobs
-* 📑 Pagination support
-* 🛡️ Secure API endpoints
-* ⚡ Fast performance with FastAPI
-
----
-
-## 🛠️ Tech Stack
-
-* **Backend:** FastAPI
-* **Database:** SQLite (can be upgraded to PostgreSQL)
-* **ORM:** SQLAlchemy
-* **Authentication:** JWT (python-jose)
-* **Password Hashing:** Passlib
-* **Server:** Uvicorn
-
----
-
-## 📂 Project Structure
-
-```
-job-tracker/
-│── app/
-│   ├── main.py
-│   ├── database.py
-│   ├── models.py
-│   ├── schemas.py
-│   ├── auth.py
-│   ├── routes/
-│   │    ├── user.py
-│   │    ├── jobs.py
-│
-│── requirements.txt
-│── README.md
+```bash
+node seed.js
 ```
 
----
-
-## ⚙️ Installation & Setup
-
-### 1️⃣ Clone the repository
-
-```
-git clone https://github.com/Niranjan1014/job-tracker-api.git
-cd job-tracker-api
-```
-
----
-
-### 2️⃣ Create virtual environment
-
-```
-python -m venv venv
-venv\Scripts\activate   # Windows
+## Example Requests
+### Create Job Request (POST /jobs)
+```json
+{
+  "title": "Software Engineer",
+  "description": "Develop and maintain web applications.",
+  "company": "Tech Company"
+}
 ```
 
----
-
-### 3️⃣ Install dependencies
-
-```
-pip install -r requirements.txt
+### Retrieve All Jobs (GET /jobs)
+```http
+GET /jobs HTTP/1.1
+Host: api.jobtracker.com
 ```
 
----
+## Testing
+Run tests using Jest:
 
-### 4️⃣ Run the server
-
+```bash
+npm test
 ```
-uvicorn app.main:app --reload
-```
 
----
-
-## 🌐 API Documentation
-
-After running the server, open:
-
-👉 http://127.0.0.1:8000/docs
-
-Interactive Swagger UI will appear.
-
----
-
-## 🔑 API Endpoints
-
-### Auth
-
-* `POST /register` → Register new user
-* `POST /login` → Login & get token
-
-### Jobs
-
-* `POST /jobs` → Create job
-* `GET /jobs` → Get all jobs
-
----
-
-## 🚀 Future Improvements
-
-* ✅ Role-based authentication
-* ✅ Email notifications
-* ✅ Frontend integration (React)
-* ✅ Deployment (Render / Railway)
-* ✅ Docker support
-
----
-
-## 💡 What I Learned
-
-* Building scalable APIs with FastAPI
-* Implementing JWT authentication
-* Database design with SQLAlchemy
-* Writing clean and maintainable backend code
-
----
-
+## License
+This project is licensed under the MIT License.
